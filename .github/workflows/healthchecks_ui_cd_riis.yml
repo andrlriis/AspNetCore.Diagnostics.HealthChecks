@@ -1,0 +1,45 @@
+name: HealthChecks UI CD Riis
+
+on: workflow_dispatch
+
+env:
+    PACKAGE_VERSION: 9.0.0-riis-1
+
+jobs:
+  package-and-publish-lib:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 10.0.x
+
+      - name: Pack UI
+        run: |
+          dotnet pack src/HealthChecks.UI/HealthChecks.UI.csproj \
+          --configuration Release \
+          -p:PackageVersion=${{ env.PACKAGE_VERSION }} \
+          -p:RepositoryUrl=https://github.com/andrlriis/AspNetCore.Diagnostics.HealthChecks \
+          -o packages
+
+      - name: Pack UI.Client
+        run: |
+          dotnet pack src/HealthChecks.UI.Client/HealthChecks.UI.Client.csproj \
+          --configuration Release \
+          -p:PackageVersion=${{ env.PACKAGE_VERSION }} \
+          -p:RepositoryUrl=https://github.com/andrlriis/AspNetCore.Diagnostics.HealthChecks \
+          -o packages
+
+      - name: Pack UI.InMemory.Storage
+        run: |
+          dotnet pack src/HealthChecks.UI.InMemory.Storage/HealthChecks.UI.InMemory.Storage.csproj \
+          --configuration Release \
+          -p:PackageVersion=${{ env.PACKAGE_VERSION }} \
+          -p:RepositoryUrl=https://github.com/andrlriis/AspNetCore.Diagnostics.HealthChecks \
+          -o packages
+
+      - name: Publish NuGet packages
+        run: dotnet nuget push packages/*.nupkg --api-key ${{ secrets.GITHUB_TOKEN }} --source https://nuget.pkg.github.com/andrlriis/index.json  

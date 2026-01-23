@@ -1,3 +1,15 @@
+# Modified for Riis
+
+Due to an outdated, insecure version of KubernetesClient, this is a fork with an upgraded dependency. The packages we need can be published by updating `PACKAGE_VERSION` in https://github.com/andrlriis/AspNetCore.Diagnostics.HealthChecks/blob/master/.github/workflows/healthchecks_ui_cd_riis.yml and manually running the workflow HealthChecks UI CD Riis.
+
+This fork can be archived if the following file ever stops listing a dependency of KubernetesClient older than 17.0.14:
+
+https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/blob/master/Directory.Packages.props
+
+If the fork is archived, also update the dependencies here:
+
+https://github.com/andrlriis/Riis.Monitor/blob/master/Riis.Monitor.csproj
+
 [![License](https://img.shields.io/github/license/Xabaril/AspNetCore.Diagnostics.HealthChecks)](LICENSE)
 [![codecov](https://codecov.io/github/Xabaril/AspNetCore.Diagnostics.HealthChecks/coverage.svg?branch=master)](https://codecov.io/github/Xabaril/AspNetCore.Diagnostics.HealthChecks?branch=master)
 [![GitHub Release Date](https://img.shields.io/github/release-date/Xabaril/AspNetCore.Diagnostics.HealthChecks?label=released)](https://github.com/Xabaril/AspNetCore.Diagnostics.HealthChecks/releases)

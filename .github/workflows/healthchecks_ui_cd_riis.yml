@@ -3,7 +3,7 @@ name: HealthChecks UI CD Riis
 on: workflow_dispatch
 
 env:
-    PACKAGE_VERSION: 9.0.0-riis-1
+    PACKAGE_VERSION: 9.0.1-riis-1
 
 jobs:
   package-and-publish-lib:

@@ -33,6 +33,14 @@ jobs:
           -p:RepositoryUrl=https://github.com/andrlriis/AspNetCore.Diagnostics.HealthChecks \
           -o packages
 
+      - name: Pack UI.Data
+        run: |
+          dotnet pack src/HealthChecks.UI.Data/HealthChecks.UI.Data.csproj \
+          --configuration Release \
+          -p:PackageVersion=${{ env.PACKAGE_VERSION }} \
+          -p:RepositoryUrl=https://github.com/andrlriis/AspNetCore.Diagnostics.HealthChecks \
+          -o packages
+
       - name: Pack UI.InMemory.Storage
         run: |
           dotnet pack src/HealthChecks.UI.InMemory.Storage/HealthChecks.UI.InMemory.Storage.csproj \

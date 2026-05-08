@@ -33,6 +33,14 @@ jobs:
           -p:RepositoryUrl=https://github.com/andrlriis/AspNetCore.Diagnostics.HealthChecks \
           -o packages
 
+      - name: Pack UI.Core
+        run: |
+          dotnet pack src/HealthChecks.UI.Core/HealthChecks.UI.Core.csproj \
+          --configuration Release \
+          -p:PackageVersion=${{ env.PACKAGE_VERSION }} \
+          -p:RepositoryUrl=https://github.com/andrlriis/AspNetCore.Diagnostics.HealthChecks \
+          -o packages
+
       - name: Pack UI.Data
         run: |
           dotnet pack src/HealthChecks.UI.Data/HealthChecks.UI.Data.csproj \
